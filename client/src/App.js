@@ -12,17 +12,24 @@ class App extends Component {
 
   render() {
     return (
-      <div> 
+      <div class ="container"> 
         {/* Header */}
         <h1> Ming Newton </h1> 
-        <h2> Calculate or parse anything! Give it a go. </h2>
         {/* User input & Button*/}
         <div class="level"> 
           <div class="level-left"> 
-            
+            <div class="level-item"> 
+              <p class="control is-expanded"> 
+                <input class="input is-info is-fullwidth" type="text" placeholder="Enter what you want to calculate" />
+              </p>
+            </div>
           </div> 
           <div class="level-right"> 
-            <button class="button"> </button>
+            <div class="level-item"> 
+              <p class="control"> 
+                <a class="button is-primary">Go</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>

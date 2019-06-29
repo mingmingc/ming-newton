@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  align-content: center;
 }
 
 .App-logo {
@@ -30,4 +31,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+input {
+  width: 100%;
+}
+
+.level {
+  width: 70%;
 }

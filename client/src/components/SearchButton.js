@@ -1,12 +1,9 @@
 import React from "react";
+import { Button } from "react-bulma-components/full";
 
 function SearchButton(props) {
   return (
-    <div className="level-item"> 
-      <p className="control"> 
-        <a className="button is-primary">Go</a>
-      </p>
-  </div>
+    <Button color="success" size="large" rounded outlined>Wowza!</Button>
   );
 }
 

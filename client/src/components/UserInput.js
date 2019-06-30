@@ -6,18 +6,25 @@ class UserInput extends Component {
   constructor() {
     super();
     this.state = {
-      equation: ""
+      result: "",
+      isLoaded: false //to track when results from API have loaded
     }
   };
 
-  // componentDidMount(){
-  //   this.sendToNewton(equation);
-  // }
-
-  // sendToNewton = query => {
-  //   API.search(query)
-  //   .then
-  // }
+  //fetch call inside componentDidMount()
+  componentDidMount() {
+    fetch('https://newton.now.sh/derive/x%5E2')
+    .then(res => res.json()) //turn results to JSON obj
+    .then(json => {
+      //use arrow function to unbind this, so we are using
+      //the 'this' ??? what is 'this' again??
+      //is it the instance of UserInput?
+      this.setState({
+        isLoaded: true,
+        result: json,
+      })
+    }) 
+  }
 
   render() {
     return (

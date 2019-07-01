@@ -5,7 +5,6 @@
 // 3) separate library for fetchResults function ("newton.js" to import later)
 // Order of ops
 
-
 import React, {Component} from 'react';
 import { Button } from "react-bulma-components/full";
 
@@ -23,10 +22,10 @@ class UserInput extends Component {
   };
 
   //Separate into another library to import later
-  //define a function that takes operation + expression (given by user):
+  //Function takes operation + expression (given by user):
   // 1) URl encode expression
   // 2) build URL
-  getJSON(op, expr) { //change to fetchResults
+  fetchResults(op, expr) { 
     this.setState({
       //loading
       isLoaded: false, //display breadcrumbs, spinner, etc
@@ -56,7 +55,6 @@ class UserInput extends Component {
 
   render() {
     const {operation, expression, result, error} = this.state;
-    console.log(this.state);
     const op = 'derive';
     const expr = 'x^2';
     return (
@@ -70,7 +68,7 @@ class UserInput extends Component {
             <div className="level-item"> 
               <p className="control is-expanded"> 
                 <input className="input is-info is-fullwidth" type="text" placeholder="Enter what you want to calculate" 
-                onChange={() => this.updateExpression} />
+                onChange={() => this.updateExpression()} />
                </p>
             </div>
           </div> 
@@ -78,22 +76,22 @@ class UserInput extends Component {
           <div className="level-right"> 
             <div className="level-item"> 
               <p className="control"> 
-                {/* Onclick points to getJSON function */}
-                <Button color="success" size="large" rounded outlined onClick={() => this.getJSON(op,expr)}>Wowza!</Button> 
+                {/* Onclick points to fetchResults function */}
+                <Button color="success" size="large" rounded outlined onClick={() => this.fetchResults(op,expr)}>Wowza!</Button> 
             </p>
-            </div>  
-          </div>
+          </div>  
           {/* results div  */}
-          <div>
-            {/* make display results conditional as long as no error */}
-            {this.state.operation} {' '}
-            {this.state.expression} =
-            {this.state.result}
-            {/* give user more specific info about error */}
-            {/* {error ? error : ""}  */}
-          </div> 
         </div>
+        <div>
+          {/* make display results conditional as long as no error */}
+          {operation} {' '}
+          {expression} =
+          {result}
+          {/* give user more specific info about error */}
+          {error ? error : ""} 
+        </div> 
       </div>
+    </div> 
     )
   }
 }

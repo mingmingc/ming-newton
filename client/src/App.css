@@ -1,7 +1,6 @@
 .App {
   text-align: center;
   align-content: center;
-  /* padding: 10px; */
 }
 
 .App-logo {
@@ -35,9 +34,16 @@
 }
 
 input {
-  width: 100%;
+  width: 30%;
+  padding: 10px;
 }
 
-.level {
-  width: 70%
+.container {
+  display: inline-block;
+  padding: 20px
+}
+
+.box {
+  background-color: #23d160;
+  color: white
 }

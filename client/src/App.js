@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { Button } from "react-bulma-components/full";
+// import { Button } from "react-bulma-components/full";
+import posed from 'react-pose';
 import './App.css';
+
+const Button = posed.div({
+  pressable: true,
+  init: { scale: 1 },
+  press: { scale: 0.8 }
+});
 
 // Next steps:
 // 1) Refactor the form 
@@ -90,7 +97,7 @@ class App extends Component {
             {/* onChange={() => this.updateExpression()}  */}
             {/* Onclick points to fetchResults function */}
             {/* Button */}
-            <Button type="submit" color="success" size="large" value="Wowza!"/>
+            <Button className="box" type="submit" color="success" size="large" value="Wowza!"/>
           </form>
 
           {/* rounded outlined onClick={() => this.fetchResults(op, expr)} */}

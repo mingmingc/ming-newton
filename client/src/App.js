@@ -49,12 +49,6 @@ class App extends Component {
       .catch((error) => this.setState({ error }))
   }
 
-  updateExpression(event) {
-    this.setState({
-      expression: event.target.value
-    })
-  }
-
   render() {
     const { operation, expression, result, error } = this.state;
     console.log(operation);
@@ -64,62 +58,54 @@ class App extends Component {
     // const op = 'derive';
     // const expr = 'x^2';
     return (
-      <div className="container">
-        <h1 className="title is-1"> Ming Newton </h1>
-        Calculator for all of your advanced math needs.
-        <div className="level">
+      <div>
+        <div className="container">
+          <h1 className="title is-1"> Ming Newton </h1>
+          Calculator for all of your advanced math needs.
+
           {/* Level left: dropdown & form for user to select operator & enter expression */}
-          <div className="level-left">
-            <div className="level-item">
-              <p className="control is-expanded">
-                {/* Select operator */}  
-                <div class="select">
-                  <select>
-                    <option>Choose operator</option>
-                    <option>Simplify</option>
-                    <option>Factor</option>
-                    <option>Derive</option>
-                    <option>Integrate</option>
-                    <option>Find 0's</option>
-                    <option>Find Tangent</option>
-                    <option>Area Under Curve</option>
-                    <option>Cosine</option>
-                    <option>Sine</option>
-                    <option>Tangent</option>
-                    <option>Inverse Cosine</option>
-                    <option>Inverse Sine</option>
-                    <option>Inverse Tangent</option>
-                    <option>Absolute Value</option>
-                    <option>Logarithm</option>
-                  </select>
-                </div>
-                {/* Enter */}
-                <input className="input is-info is-fullwidth" type="text" placeholder="Enter what you want to calculate" 
-                onChange={() => this.updateExpression()} />
-              </p>
-            </div>
-          </div>
-          {/* Button */}
-          <div className="level-right">
-            <div className="level-item">
-              <p className="control">
-                {/* Onclick points to fetchResults function */}
-                <Button color="success" size="large">Wowza!</Button>
-                {/* rounded outlined onClick={() => this.fetchResults(op, expr)} */}
-              </p>
-            </div>
-            {/* results div  */}
-          </div>
+          {/* Select operator */}
+          <form onSubmit={this.updateExpression}>
+            <select className="select">
+              <option>Choose operator</option>
+              <option>Simplify</option>
+              <option>Factor</option>
+              <option>Derive</option>
+              <option>Integrate</option>
+              <option>Find 0's</option>
+              <option>Find Tangent</option>
+              <option>Area Under Curve</option>
+              <option>Cosine</option>
+              <option>Sine</option>
+              <option>Tangent</option>
+              <option>Inverse Cosine</option>
+              <option>Inverse Sine</option>
+              <option>Inverse Tangent</option>
+              <option>Absolute Value</option>
+              <option>Logarithm</option>
+            </select>
+            {/* Enter */}
+            <input className="input is-info is-fullwidth" type="text" placeholder="Enter what you want to calculate"
+            />
+            {/* onChange={() => this.updateExpression()}  */}
+            {/* Onclick points to fetchResults function */}
+            {/* Button */}
+            <Button type="submit" color="success" size="large" value="Wowza!"/>
+          </form>
+
+          {/* rounded outlined onClick={() => this.fetchResults(op, expr)} */}
         </div>
+
         <div>
-            {/* make display results conditional as long as no error */}
-            {operation} {' '}
-            {expression} =
-            {result}
-            {/* give user more specific info about error */}
-            {/* {error ? error : ""}  */}
-          </div>
-      </div>
+          {/* results div  */}
+          {/* make display results conditional as long as no error */}
+          {operation} {' '}
+          {expression} =
+              {result}
+          {/* give user more specific info about error */}
+          {/* {error ? error : ""}  */}
+        </div>
+      </div >
     )
   }
 }

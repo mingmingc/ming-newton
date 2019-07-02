@@ -66,57 +66,57 @@ class App extends Component {
     // const expr = 'x^2';
     return (
       <div>
-        <div className="container">
+        <div className="container is-fluid is-centered">
           <h1 className="title is-1"> Ming Newton </h1>
           Calculator for all of your advanced math needs.
-              <div className="columns">
-            <div className="column is-mobile">
-              {/* Level left: dropdown & form for user to select operator & enter expression */}
-              {/* Select operator */}
-              {/* <form onSubmit={this.updateExpression}> */}
-              <select className="select">
-                <option>Choose operator</option>
-                <option>Simplify</option>
-                <option>Factor</option>
-                <option>Derive</option>
-                <option>Integrate</option>
-                <option>Find 0's</option>
-                <option>Find Tangent</option>
-                <option>Area Under Curve</option>
-                <option>Cosine</option>
-                <option>Sine</option>
-                <option>Tangent</option>
-                <option>Inverse Cosine</option>
-                <option>Inverse Sine</option>
-                <option>Inverse Tangent</option>
-                <option>Absolute Value</option>
-                <option>Logarithm</option>
-              </select>
-            </div>
-            {/* Enter */}
-            <div className="column is-mobile">
-              <input className="input is-info is-fullwidth" type="text" placeholder="Enter what you want to calculate"
-              />
-            </div>
-            {/* onChange={() => this.updateExpression()}  */}
-            {/* Onclick points to fetchResults function */}
-            <div className="column is-mobile">
-              <Button className="box" type="submit" color="success" size="large" value="Wowza!" />
-            </div>
-            {/* </form> */}
-            {/* rounded outlined onClick={() => this.fetchResults(op, expr)} */}
-            <div>
-              {/* results div  */}
-              {/* make display results conditional as long as no error */}
-              {operation} {' '}
-              {expression} =
-              {result}
-              {/* give user more specific info about error */}
-              {/* {error ? error : ""}  */}
-            </div>
-          </div>
         </div>
-      </div >
+        <div className="columns">
+          <div className="column is-mobile">
+            {/* Level left: dropdown & form for user to select operator & enter expression */}
+            {/* Select operator */}
+            {/* <form onSubmit={this.updateExpression}> */}
+            <select className="select">
+              <option>Choose operator</option>
+              <option>Simplify</option>
+              <option>Factor</option>
+              <option>Derive</option>
+              <option>Integrate</option>
+              <option>Find 0's</option>
+              <option>Find Tangent</option>
+              <option>Area Under Curve</option>
+              <option>Cosine</option>
+              <option>Sine</option>
+              <option>Tangent</option>
+              <option>Inverse Cosine</option>
+              <option>Inverse Sine</option>
+              <option>Inverse Tangent</option>
+              <option>Absolute Value</option>
+              <option>Logarithm</option>
+            </select>
+          </div>
+          {/* Enter */}
+          <div className="column is-mobile">
+            <input className="input is-info is-fullwidth" type="text" placeholder="Enter what you want to calculate"
+            />
+          </div>
+          {/* onChange={() => this.updateExpression()}  */}
+          {/* Onclick points to fetchResults function */}
+          <div className="column is-mobile">
+            <Button className="box" type="submit" color="success" size="large" value="Wowza!" />
+          </div>
+          {/* </form> */}
+          {/* rounded outlined onClick={() => this.fetchResults(op, expr)} */}
+        </div>
+        <div className="results"> 
+          {/* results div  */}
+          {/* make display results conditional as long as no error */}
+          {operation} {' '}
+          {expression} =
+          {result}
+          {/* give user more specific info about error */}
+          {/* {error ? error : ""}  */}
+        </div>
+      </div>
     )
   }
 }

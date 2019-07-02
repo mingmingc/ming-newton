@@ -33,14 +33,9 @@
   }
 }
 
-input {
-  width: 30%;
-  padding: 10px;
-}
-
-.container {
-  display: inline-block;
-  padding: 20px
+.columns, .results {
+  margin: 20px;
+  padding: 10%
 }
 
 .box {

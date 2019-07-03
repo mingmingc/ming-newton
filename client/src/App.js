@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import { Button } from "react-bulma-components/full";
 import posed from 'react-pose';
 import './App.css';
 
+//Button animation
 const Button = posed.div({
   pressable: true,
   init: { scale: 1 },
@@ -10,16 +10,14 @@ const Button = posed.div({
 });
 
 // Next steps:
-// 1) Refactor the form 
-// 2) Dropdown/selection for operation ("select", etc)
-// bonus: describe each operation
-// 3) separate library for fetchResults function ("newton.js" to import later)
-// Order of ops
+// User validation & error messages
+// Add description for each operation
+// Separate library for fetchResults function ("newton.js" to import later)
 
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       //to track when results from API have loaded
       isLoaded: false,
@@ -28,25 +26,28 @@ class App extends Component {
       result: "",
       error: {}
     }
+    this.onChange = this.onChange.bind(this);
+    this.fetchResult = this.fetchResult.bind(this);
+  }
 
-    this.fetchResults = this.fetchResults.bind(this);
-  };
+  onChange(event) {
+    let change = {}
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+    console.log(this.state);
+  }
 
-  //Separate into another library to import later
+    //Separate into another library to import later
   //Function takes operation + expression (given by user):
   // 1) URL encode expression
   // 2) build URL
-  fetchResults(op, expr) {
-    // console.log(event.target.value);
-    this.setState({
-      //loading
-      isLoaded: false, //display breadcrumbs, spinner, etc
-      result: "",
-      error: {}
-    });
-
-    const encodedExpr = encodeURI(expr); //take user input & encode expression into URL format
-    const url = `https://newton.now.sh/${op}/${encodedExpr}`
+  fetchResult() {
+    const encodedExpr = encodeURI(this.state.expression); //take user input & encode expression into URL format
+    const url = `https://newton.now.sh/${this.state.operation}/${encodedExpr}`
     fetch(url) //consider using a dropdown for the operations
       .then(res => res.json())    //turn results to JSON obj
       .then(({ operation, expression, result }) => {     //We use arrow function to unbind 'this', so 'this' refers to the instance of UserInput object as defined above 
@@ -61,11 +62,8 @@ class App extends Component {
 
   render() {
     const { operation, expression, result, error } = this.state;
-    console.log(operation);
-    console.log(expression);
-    console.log(result);
     console.log(error);
-    // const op = 'derive';
+    // const op = 'fast';
     // const expr = 'x^2';
     return (
       <div>
@@ -73,11 +71,11 @@ class App extends Component {
           <h1 className="title is-1"> Ming Newton </h1>
           Calculator for all of your advanced math needs.
         </div>
+        {/* Begin user input/form */}
         <div className="columns">
           <div className="column is-mobile">
-            {/* Level left: dropdown & form for user to select operator & enter expression */}
-            {/* Select operator, updates operation in this.state */}
-            <select value={this.state.operation} onChange={this.handleChange} className="select">
+            {/* Select operator, onChange updates state */}
+            <select onChange={this.onChange} className="select" name="operation">
               <option>Choose operator</option>
               <option value="simplify">Simplify</option>
               <option value="factor">Factor</option>
@@ -97,15 +95,14 @@ class App extends Component {
             </select>
           </div>
           <div className="column is-mobile">
-            {/* Input expression: user types expression, this.state updated */}
-            <input value={this.state.expression} onChange={this.handleChange} className="input is-info is-fullwidth" type="text" placeholder="Enter what you want to calculate"
+            {/* Input expression: user types expression, onChange updates state */}
+            <input onChange={this.onChange} className="input is-info is-fullwidth" name="expression" type="text" placeholder="Enter what you want to calculate"
             />
           </div>
           <div className="column is-mobile">
-            <Button className="box" type="submit" color="success" size="large" value="Wowza!" rounded outlined />
+            <Button className="box button is-rounded" type="submit" color="success" size="small" outlined onClick={this.fetchResult}> Wowza! </Button>
             {/* onChange={() => this.fetchResults()} */}
           </div>
-          {/* </form> */}
           
         </div>
         <div className="results"> 

@@ -28,6 +28,8 @@ class App extends Component {
       result: "",
       error: {}
     }
+
+    this.fetchResults = this.fetchResults.bind(this);
   };
 
   //Separate into another library to import later
@@ -35,6 +37,7 @@ class App extends Component {
   // 1) URL encode expression
   // 2) build URL
   fetchResults(op, expr) {
+    // console.log(event.target.value);
     this.setState({
       //loading
       isLoaded: false, //display breadcrumbs, spinner, etc
@@ -47,7 +50,7 @@ class App extends Component {
     fetch(url) //consider using a dropdown for the operations
       .then(res => res.json())    //turn results to JSON obj
       .then(({ operation, expression, result }) => {     //We use arrow function to unbind 'this', so 'this' refers to the instance of UserInput object as defined above 
-        console.log({ operation, expression, result }); //object descontruction
+        // console.log({ operation, expression, result }); //object descontruction
         this.setState({
           isLoaded: true,
           operation, expression, result
@@ -73,39 +76,37 @@ class App extends Component {
         <div className="columns">
           <div className="column is-mobile">
             {/* Level left: dropdown & form for user to select operator & enter expression */}
-            {/* Select operator */}
-            {/* <form onSubmit={this.updateExpression}> */}
-            <select className="select">
+            {/* Select operator, updates operation in this.state */}
+            <select value={this.state.operation} onChange={this.handleChange} className="select">
               <option>Choose operator</option>
-              <option>Simplify</option>
-              <option>Factor</option>
-              <option>Derive</option>
-              <option>Integrate</option>
-              <option>Find 0's</option>
-              <option>Find Tangent</option>
-              <option>Area Under Curve</option>
-              <option>Cosine</option>
-              <option>Sine</option>
-              <option>Tangent</option>
-              <option>Inverse Cosine</option>
-              <option>Inverse Sine</option>
-              <option>Inverse Tangent</option>
-              <option>Absolute Value</option>
-              <option>Logarithm</option>
+              <option value="simplify">Simplify</option>
+              <option value="factor">Factor</option>
+              <option value="derive">Derive</option>
+              <option value="integrate">Integrate</option>
+              <option value="zeroes">Find 0's</option>
+              <option value="tangent">Find Tangent</option>
+              <option value="area">Area Under Curve</option>
+              <option value="cos">Cosine</option>
+              <option value="sin">Sine</option>
+              <option value="tan">Tangent</option>
+              <option value="arccos">Inverse Cosine</option>
+              <option value="arcsin">Inverse Sine</option>
+              <option value="arctan">Inverse Tangent</option>
+              <option value="abs">Absolute Value</option>
+              <option value="log">Logarithm</option>
             </select>
           </div>
-          {/* Enter */}
           <div className="column is-mobile">
-            <input className="input is-info is-fullwidth" type="text" placeholder="Enter what you want to calculate"
+            {/* Input expression: user types expression, this.state updated */}
+            <input value={this.state.expression} onChange={this.handleChange} className="input is-info is-fullwidth" type="text" placeholder="Enter what you want to calculate"
             />
           </div>
-          {/* onChange={() => this.updateExpression()}  */}
-          {/* Onclick points to fetchResults function */}
           <div className="column is-mobile">
-            <Button className="box" type="submit" color="success" size="large" value="Wowza!" />
+            <Button className="box" type="submit" color="success" size="large" value="Wowza!" rounded outlined />
+            {/* onChange={() => this.fetchResults()} */}
           </div>
           {/* </form> */}
-          {/* rounded outlined onClick={() => this.fetchResults(op, expr)} */}
+          
         </div>
         <div className="results"> 
           {/* results div  */}

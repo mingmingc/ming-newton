@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import posed from 'react-pose';
 import './App.css';
 
-//Button animation
 const Button = posed.div({
   pressable: true,
   init: { scale: 1 },
@@ -48,10 +47,9 @@ class App extends Component {
   fetchResult() {
     const encodedExpr = encodeURI(this.state.expression); //take user input & encode expression into URL format
     const url = `https://newton.now.sh/${this.state.operation}/${encodedExpr}`
-    fetch(url) //consider using a dropdown for the operations
+    fetch(url) 
       .then(res => res.json())    //turn results to JSON obj
       .then(({ operation, expression, result }) => {     //We use arrow function to unbind 'this', so 'this' refers to the instance of UserInput object as defined above 
-        // console.log({ operation, expression, result }); //object descontruction
         this.setState({
           isLoaded: true,
           operation, expression, result
@@ -63,8 +61,6 @@ class App extends Component {
   render() {
     const { operation, expression, result, error } = this.state;
     console.log(error);
-    // const op = 'fast';
-    // const expr = 'x^2';
     return (
       <div>
         <div className="container is-fluid is-centered">
@@ -101,7 +97,6 @@ class App extends Component {
           </div>
           <div className="column is-mobile">
             <Button className="box button is-rounded" type="submit" color="success" size="small" outlined onClick={this.fetchResult}> Wowza! </Button>
-            {/* onChange={() => this.fetchResults()} */}
           </div>
           
         </div>

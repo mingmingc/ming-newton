@@ -18,8 +18,12 @@ const Img = posed.img({
 // Fix bug with "find 0's" - does not work, or will show answer without symbols. Breaks operations used after
 // Clear this.state.result when new operation is selected
 // User validation & error messages
+    // do not use capital letters
+// Create guide to symbols & formatting
 // Add description for each operation
 // Separate library for fetchResults function ("newton.js" to import later)
+// Work on layout/UI - spacing, describe ops for user, styling, examples
+// 
 
 
 class App extends Component {
@@ -103,7 +107,7 @@ class App extends Component {
             />
           </div>
           <div className="column is-mobile">
-            <Button className="box button is-rounded" type="submit" color="success" size="small" outlined onClick={this.fetchResult}> Wowza! </Button>
+            <Button className="box button is-rounded" type="submit" color="success" size="small" outlined onClick={this.fetchResult}> Calculate </Button>
           </div>
           
         </div>

@@ -104,8 +104,8 @@ class App extends Component {
           {/* results div  */}
           {/* make display results conditional as long as no error */}
           {operation} {' '}
-          {expression} =
-          {result}
+          {expression} <strong> =
+           {result} </strong> 
           {/* give user more specific info about error */}
           {/* {error ? error : ""}  */}
         </div>

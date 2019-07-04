@@ -8,6 +8,12 @@ const Button = posed.div({
   press: { scale: 0.8 }
 });
 
+const Img = posed.img({
+  hoverable: true,
+  init: { scale: 1 },
+  hover: { scale: 1.2 }
+});
+
 // Next steps:
 // User validation & error messages
 // Add description for each operation
@@ -64,7 +70,7 @@ class App extends Component {
     return (
       <div>
         <div className="container is-fluid is-centered">
-          <h1 className="title is-1"> Ming Newton <img src="https://m.media-amazon.com/images/I/61V8uaqUgXL._SR500,500_.jpg" alt="newton bot" width="50px"/> </h1>
+          <h1 className="title is-1"> Ming Newton <Img src="https://m.media-amazon.com/images/I/61V8uaqUgXL._SR500,500_.jpg" alt="newton bot" width="50px"/> </h1>
           Calculator for all of your advanced math needs.
         </div>
         {/* Begin user input/form */}

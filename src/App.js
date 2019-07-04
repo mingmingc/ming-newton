@@ -82,7 +82,7 @@ class App extends Component {
         <div className="columns">
           <div className="column is-mobile">
             {/* Select operator, onChange updates state */}
-            <p> Operator: </p> 
+            <label class="label"> Operator: </label> 
             <select onChange={this.onChange} className="select" name="operation">
               <option>Choose operator</option>
               <option value="simplify">Simplify</option>
@@ -103,7 +103,7 @@ class App extends Component {
             </select>
           </div>
           <div className="column is-mobile">
-            <p> Expression: </p> 
+            <label class="label"> Expression: </label> 
             {/* Input expression: user types expression, onChange updates state */}
             <input onChange={this.onChange} className="input is-info is-fullwidth" name="expression" type="text" placeholder="Enter what you want to calculate"
             />

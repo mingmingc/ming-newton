@@ -15,6 +15,8 @@ const Img = posed.img({
 });
 
 // Next steps:
+// Fix bug with "find 0's" - does not work, or will show answer without symbols. Breaks operations used after
+// Clear this.state.result when new operation is selected
 // User validation & error messages
 // Add description for each operation
 // Separate library for fetchResults function ("newton.js" to import later)
@@ -36,7 +38,6 @@ class App extends Component {
   }
 
   onChange(event) {
-    let change = {}
     const target = event.target;
     const value = target.value;
     const name = target.name;

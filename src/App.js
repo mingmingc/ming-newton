@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import posed from 'react-pose';
 import './App.css';
 
-const Button = posed.div({
-  pressable: true,
-  init: { scale: 1 },
-  press: { scale: 0.8 }
-});
-
 // Next steps:
 // Fix bug with "find 0's" - does not work, or will show answer without symbols. Breaks operations used after
 // Clear this.state.result when new operation is selected
@@ -40,6 +34,8 @@ class App extends Component {
     const name = target.name;
     this.setState({
       [name]: value
+    }, () => {
+      this.fetchResult();
     });
     console.log(this.state);
   }
@@ -49,14 +45,16 @@ class App extends Component {
   // 1) URL encode expression
   // 2) build URL
   fetchResult() {
-    const encodedExpr = encodeURI(this.state.expression); //take user input & encode expression into URL format
+    console.log("this.state.operation", this.state.operation)
+    console.log("this.state.expression", this.state.expression)
+    const encodedExpr = encodeURI(this.state.expression.toLowerCase()); //take user input & encode expression into URL format
     const url = `https://newton.now.sh/${this.state.operation}/${encodedExpr}`
     fetch(url) 
       .then(res => res.json())    //turn results to JSON obj
       .then(({ operation, expression, result }) => {     //We use arrow function to unbind 'this', so 'this' refers to the instance of UserInput object as defined above 
         this.setState({
           isLoaded: true,
-          operation, expression, result
+          result
         })
       })
       .catch((error) => this.setState({ error }))
@@ -75,7 +73,7 @@ class App extends Component {
         <div className="columns">
           <div className="column is-mobile">
             {/* Select operator, onChange updates state */}
-            <label class="label"> Operator: </label> 
+            <label className="label"> Operator: </label> 
             <select onChange={this.onChange} className="select" name="operation">
               <option>Choose operator</option>
               <option value="simplify">Simplify</option>
@@ -96,25 +94,31 @@ class App extends Component {
             </select>
           </div>
           <div className="column is-mobile">
-            <label class="label"> Expression: </label> 
+            <label className="label"> Expression: </label> 
             {/* Input expression: user types expression, onChange updates state */}
             <input onChange={this.onChange} className="input is-info is-fullwidth" name="expression" type="text" placeholder="Enter what you want to calculate"
             />
           </div>
-          <div className="column is-mobile">
-            <Button className="box button is-rounded" type="submit" color="success" size="small" outlined onClick={this.fetchResult}> Calculate </Button>
-          </div>
           
         </div>
-        <div className="results"> 
-          {/* results div  */}
-          {/* make display results conditional as long as no error */}
-          {operation} {' '}
-          {expression} <strong> =
-           {result} </strong> 
-          {/* give user more specific info about error */}
-          {/* {error ? error : ""}  */}
+        <div className="results">
+          {operation === "" && expression === "" ? "" : this.resultWithData()}
         </div>
+      </div>
+    )
+  }
+
+  resultWithData(){
+    return(
+      operation !== "" && expression === "" ? "Enter an expression to derive" : 
+      <div>
+      {/* results div  */}
+      {/* make display results conditional as long as no error */}
+      {operation} {' '}
+      {expression} <strong> =
+       {result} </strong> 
+      {/* give user more specific info about error */}
+      {/* {error ? error : ""}  */}
       </div>
     )
   }

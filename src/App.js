@@ -12,6 +12,11 @@ import './App.css';
 // Separate library for fetchResults function ("newton.js" to import later)
 // Work on layout/UI - spacing, describe ops for user, styling, examples
 
+const Animated = posed.div({
+  hoverable: true,
+  init: { scale: 1 },
+  hover: { scale: 1.1 },
+})
 
 class App extends Component {
   constructor(props) {
@@ -65,50 +70,55 @@ class App extends Component {
     console.log(error);
     return (
       <div>
-        <div className="container is-fluid is-centered">
-          <h1 className="title is-1"> Ming Newton </h1>
-          Calculator for all of your advanced math needs.
-        </div>
-        {/* Begin user input/form */}
-        <div className="columns">
-          <div className="column is-mobile">
-            {/* Select operator, onChange updates state */}
-            <label className="label"> Operator: </label> 
-            <select onChange={this.onChange} className="select" name="operation">
-              <option>Choose operator</option>
-              <option value="simplify">Simplify</option>
-              <option value="factor">Factor</option>
-              <option value="derive">Derive</option>
-              <option value="integrate">Integrate</option>
-              <option value="zeroes">Find 0's</option>
-              <option value="tangent">Find Tangent</option>
-              <option value="area">Area Under Curve</option>
-              <option value="cos">Cosine</option>
-              <option value="sin">Sine</option>
-              <option value="tan">Tangent</option>
-              <option value="arccos">Inverse Cosine</option>
-              <option value="arcsin">Inverse Sine</option>
-              <option value="arctan">Inverse Tangent</option>
-              <option value="abs">Absolute Value</option>
-              <option value="log">Logarithm</option>
-            </select>
+        <div class="container"> 
+          <h1 className="box title is-1"> Ming Newton </h1>
+          <h2 className="title is-3"> Calculator for all of your advanced math needs. </h2> 
+          <div className="columns is-mobile is-marginless is-paddingless">
+            <div className="column is-4">
+              {/* Select operator, onChange updates state */}
+              <label className="label"> Operator: </label>
+              <div className="select"> 
+                <Animated>
+                  <select onChange={this.onChange} className="is-focused is-large" name="operation">
+                    <option>Choose operator</option>
+                    <option value="simplify">Simplify</option>
+                    <option value="factor">Factor</option>
+                    <option value="derive">Derive</option>
+                    <option value="integrate">Integrate</option>
+                    <option value="zeroes">Find 0's</option>
+                    <option value="tangent">Find Tangent</option>
+                    <option value="area">Area Under Curve</option>
+                    <option value="cos">Cosine</option>
+                    <option value="sin">Sine</option>
+                    <option value="tan">Tangent</option>
+                    <option value="arccos">Inverse Cosine</option>
+                    <option value="arcsin">Inverse Sine</option>
+                    <option value="arctan">Inverse Tangent</option>
+                    <option value="abs">Absolute Value</option>
+                    <option value="log">Logarithm</option>
+                  </select>
+                </Animated>
+              </div>
+            </div>
+            <div className="column is-8">
+              <label className="label"> Expression: </label> 
+              {/* Input expression: user types expression, onChange updates state */}
+              <Animated> 
+                <input onChange={this.onChange} className="input is-info" name="expression" type="text" placeholder="Enter what you want to calculate"
+                />
+              </Animated>
+            </div>
           </div>
-          <div className="column is-mobile">
-            <label className="label"> Expression: </label> 
-            {/* Input expression: user types expression, onChange updates state */}
-            <input onChange={this.onChange} className="input is-info is-fullwidth" name="expression" type="text" placeholder="Enter what you want to calculate"
-            />
+          <div className="results is-paddingless">
+            {operation === "" && expression === "" ? "" : this.resultWithData()}
           </div>
-          
-        </div>
-        <div className="results">
-          {operation === "" && expression === "" ? "" : this.resultWithData()}
         </div>
       </div>
     )
   }
 
   resultWithData(){
+    const { operation, expression, result, error } = this.state
     return(
       operation !== "" && expression === "" ? "Enter an expression to derive" : 
       <div>

@@ -41,7 +41,9 @@
 .box {
   background-color: #23d160;
   color: white;
-  width: 100px;
+  text-align: center;
+  align-content: center;
+  width: 50%;
 }
 
 .results {

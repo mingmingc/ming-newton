@@ -3,7 +3,6 @@ import posed from 'react-pose';
 import './App.css';
 
 // Next steps:
-// Fix bug with "find 0's" - does not work, or will show answer without symbols. Breaks operations used after
 // Clear this.state.result when new operation is selected
 // User validation & error messages
     // do not use capital letters
@@ -103,10 +102,9 @@ class App extends Component {
             <div className="column is-8">
               <label className="label"> Expression: </label> 
               {/* Input expression: user types expression, onChange updates state */}
-              <Animated> 
-                <input onChange={this.onChange} className="input is-info" name="expression" type="text" placeholder="Enter what you want to calculate"
-                />
-              </Animated>
+              <input onChange={this.onChange} className="input is-info is-hovered" name="expression" type="text" placeholder="Enter what you want to calculate"
+              />
+
             </div>
           </div>
           <div className="results is-paddingless">

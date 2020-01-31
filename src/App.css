@@ -38,12 +38,13 @@
   padding: 10%
 }
 
-.box {
+#logo {
   background-color: #23d160;
   color: white;
-  text-align: center;
-  align-content: center;
-  width: 50%;
+}
+
+.title {
+  margin: 20px;
 }
 
 .results {

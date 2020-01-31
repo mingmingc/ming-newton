@@ -70,7 +70,7 @@ class App extends Component {
     return (
       <div>
         <div class="container"> 
-          <h1 className="box title is-1"> Ming Newton </h1>
+          <h1 className="title is-1" id="logo"> Ming Newton </h1>
           <h2 className="title is-3"> Calculator for all of your advanced math needs. </h2> 
           <div className="columns is-mobile is-marginless is-paddingless">
             <div className="column is-4">

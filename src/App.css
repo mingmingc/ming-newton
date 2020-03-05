@@ -33,6 +33,17 @@
   }
 }
 
+#logo {
+  height: 70px;
+  align-self: center;
+  padding: 0 12px 0  12px;
+  border-radius: 10px;
+}
+
+#subtitle {
+  margin-left: 0;
+}
+
 .columns, .results {
   margin: 20px;
   padding: 10%
@@ -49,4 +60,6 @@
 
 .results {
   font-size: 32px;
+  margin-left: 0;
+  padding: 12px;
 }

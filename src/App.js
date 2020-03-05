@@ -70,10 +70,17 @@ class App extends Component {
     return (
       <div>
         <div class="container"> 
-          <h1 className="title is-1" id="logo"> Ming Newton </h1>
-          <h2 className="title is-3"> Calculator for all of your advanced math needs. </h2> 
+          <div class="columns is-paddingless is-marginless"> 
+            <div className="column is-5"> 
+              <h1 className="title is-1 is-marginless" id="logo"> Ming Newton </h1>
+              <h2 className="title is-3" id="subtitle"> Calculator for all of your advanced math needs. </h2> 
+            </div> 
+            <div className="column is-3"> 
+              <img src=".\logo.png" />
+            </div>
+          </div>
           <div className="columns is-mobile is-marginless is-paddingless">
-            <div className="column is-4">
+            <div className="column is-4" id="operator">
               {/* Select operator, onChange updates state */}
               <label className="label"> Operator: </label>
               <div className="select"> 
@@ -102,12 +109,12 @@ class App extends Component {
             <div className="column is-8">
               <label className="label"> Expression: </label> 
               {/* Input expression: user types expression, onChange updates state */}
-              <input onChange={this.onChange} className="input is-info is-hovered" name="expression" type="text" placeholder="Enter what you want to calculate"
+              <input onChange={this.onChange} className="input is-info is-hovered" name="expression" type="text" placeholder="x^2+2x, pi, 0, 1"
               />
 
             </div>
           </div>
-          <div className="results is-paddingless">
+          <div className="results">
             {operation === "" && expression === "" ? "" : this.resultWithData()}
           </div>
         </div>
@@ -118,7 +125,7 @@ class App extends Component {
   resultWithData(){
     const { operation, expression, result, error } = this.state
     return(
-      operation !== "" && expression === "" ? "Enter an expression to derive" : 
+      operation !== "" && expression === "" ? "Enter an expression to evaluate" : 
       <div>
       {/* results div  */}
       {/* make display results conditional as long as no error */}

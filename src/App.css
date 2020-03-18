@@ -38,6 +38,8 @@
   align-self: center;
   padding: 0 12px 0  12px;
   border-radius: 10px;
+  background-color: #23d160;
+  color: white;
 }
 
 #subtitle {
@@ -47,11 +49,6 @@
 .columns, .results {
   margin: 20px;
   padding: 10%
-}
-
-#logo {
-  background-color: #23d160;
-  color: white;
 }
 
 .title {

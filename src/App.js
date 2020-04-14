@@ -73,7 +73,7 @@ class App extends Component {
           <div class="columns is-paddingless is-marginless"> 
             <div className="column is-5"> 
               <h1 className="title is-1 is-marginless" id="logo"> Ming Newton </h1>
-              <h2 className="title is-3" id="subtitle"> Calculator for all of your advanced math needs. </h2> 
+              <h2 className="title is-3" id="subtitle"> Advanced Math Calculator </h2> 
             </div> 
             <div className="column is-3"> 
               <img src=".\logo.png" />

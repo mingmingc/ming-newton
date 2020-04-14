@@ -106,7 +106,7 @@ class App extends Component {
                 </Animated>
               </div>
             </div>
-            <div className="column is-8">
+            <div className="column is-4">
               <label className="label"> Expression: </label> 
               {/* Input expression: user types expression, onChange updates state */}
               <input onChange={this.onChange} className="input is-info is-hovered" name="expression" type="text" placeholder="x^2+2x, pi, 0, 1"

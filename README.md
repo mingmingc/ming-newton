@@ -5,3 +5,5 @@
 [https://ming-newton.herokuapp.com/](https://ming-newton.herokuapp.com/)
 
 [Newton API](https://github.com/aunyks/newton-api)
+
+![Screenshot](img/readme-screenshot.png)

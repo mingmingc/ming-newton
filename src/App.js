@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import posed from 'react-pose';
+import './../node_modules/@creativebulma/bulma-tooltip/dist/bulma-tooltip.css';
 import './App.css';
 
-// Next steps:
-// Clear this.state.result when new operation is selected
-// User validation & error messages
-    // do not use capital letters
-// Create guide to symbols & formatting
-// Add description for each operation
-// Separate library for fetchResults function ("newton.js" to import later)
-// Work on layout/UI - spacing, describe ops for user, styling, examples
+/*
+Next steps:
+Clear this.state.result when new operation is selected
+User validation & error messages
+    do not use capital letters
+Create guide to symbols & formatting
+Add description for each operation
+Separate library for fetchResults function ("newton.js" to import later)
+Work on layout/UI - spacing, describe ops for user, styling, examples
+*/
 
 const Animated = posed.div({
   hoverable: true,
@@ -44,10 +47,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-    //Separate into another library to import later
-  //Function takes operation + expression (given by user):
-  // 1) URL encode expression
-  // 2) build URL
+  /* Separate into another library to import later
+   Function takes operation + expression (given by user):
+   1) URL encode expression
+   2) build URL
+  */
+ 
   fetchResult() {
     console.log("this.state.operation", this.state.operation)
     console.log("this.state.expression", this.state.expression)
@@ -63,7 +68,6 @@ class App extends Component {
       })
       .catch((error) => this.setState({ error }))
   }
-
   render() {
     const { operation, expression, result, error } = this.state;
     console.log(error);
@@ -76,13 +80,13 @@ class App extends Component {
               <h2 className="title is-3" id="subtitle"> Advanced Math Calculator </h2> 
             </div> 
             <div className="column is-3"> 
-              <img src=".\logo.png" />
+              <img src=".\logo.png" alt="logo"/>
             </div>
           </div>
           <div className="columns is-mobile is-marginless is-paddingless">
             <div className="column is-4" id="operator">
               {/* Select operator, onChange updates state */}
-              <label className="label"> Operator: </label>
+              <label className="label has-tooltip-left" data-tooltip="Select an operator"> Operator: </label>
               <div className="select"> 
                 <Animated>
                   <select onChange={this.onChange} className="is-focused is-large" name="operation">
@@ -92,7 +96,7 @@ class App extends Component {
                     <option value="derive">Derive</option>
                     <option value="integrate">Integrate</option>
                     <option value="zeroes">Find 0's</option>
-                    <option value="tangent">Find Tangent</option>
+                    <option value="tangent">Find Tangent Line</option>
                     <option value="area">Area Under Curve</option>
                     <option value="cos">Cosine</option>
                     <option value="sin">Sine</option>
@@ -106,17 +110,103 @@ class App extends Component {
                 </Animated>
               </div>
             </div>
-            <div className="column is-4">
-              <label className="label"> Expression: </label> 
+
+            <div className="column is-4" id="expression">
+              <label className="label has-tooltip-left" data-tooltip="Refer to chart on right to format your expression"> Expression: </label> 
               {/* Input expression: user types expression, onChange updates state */}
               <input onChange={this.onChange} className="input is-info is-hovered" name="expression" type="text" placeholder="x^2+2x, pi, 0, 1"
               />
-
             </div>
           </div>
-          <div className="results">
-            {operation === "" && expression === "" ? "" : this.resultWithData()}
+
+          <div className="columns is-mobile is-marginless is-paddingless">
+            <div className="results column is-8">
+              {operation === "" && expression === "" ? "" : this.resultWithData()}
+            </div>
+            <div className="column is-4 is">
+              <span> <b>Formatting Guide:</b></span>
+              <table className="table is-bordered is-striped is-hoverable">
+                  <tr> 
+                    <th> Operator</th>
+                    <th> Expression </th>
+                    <th> Result </th>
+                  </tr>
+                <tbody> 
+                  <tr> 
+                    <td>Simplify</td>
+                    <td>(x+3)(x+5)</td>
+                    <td>x^2+8x+15</td>
+                  </tr>
+                  <tr> 
+                    <td>Factor</td>
+                    <td>x^2+8x+15</td>
+                    <td>(x+3)(x+5)</td>
+                  </tr>
+                  <tr> 
+                    <td>Derive</td>
+                    <td>x^2</td>
+                    <td>2x</td>
+                  </tr>
+                  <tr> 
+                    <td>Integrate</td>
+                    <td>x^2</td>
+                    <td>1/3 x^3</td>
+                  </tr>
+                  <tr> 
+                    <td>Find 0's</td>
+                    <td>x^2+2x</td>
+                    <td>[-2, 0]</td>
+                  </tr>
+                  <tr> 
+                    <td>Find Tangent Line</td>
+                    <td>2 | x^3 <br />x val | f(x) </td>
+                    <td>[-2, 0]</td>
+                  </tr>
+                  <tr> 
+                    <td>Cosine</td>
+                    <td>pi </td>
+                    <td>-1 </td>
+                  </tr>
+                  <tr> 
+                    <td>Sine</td>
+                    <td>0 </td>
+                    <td>0 </td>
+                  </tr>
+                  <tr> 
+                    <td>Tangent</td>
+                    <td>0 </td>
+                    <td>0 </td>
+                  </tr>
+                  <tr> 
+                    <td>Arccosine <br/>(Inverse Cosine)</td>
+                    <td>-1 </td>
+                    <td>pi </td>
+                  </tr>
+                  <tr> 
+                    <td>Arcsine <br/>(Inverse Sine)</td>
+                    <td>0 </td>
+                    <td>0 </td>
+                  </tr>
+                  <tr> 
+                    <td>Arctangent <br/>(Inverse Tangent)</td>
+                    <td>0 </td>
+                    <td>0 </td>
+                  </tr>
+                  <tr> 
+                    <td>Absolute Value </td>
+                    <td>-1 </td>
+                    <td>1 </td>
+                  </tr>
+                  <tr> 
+                    <td>Logarithm </td>
+                    <td>2 | 8 <br/>base | arg</td>
+                    <td>3 </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> 
           </div>
+
         </div>
       </div>
     )
@@ -131,7 +221,7 @@ class App extends Component {
       {/* make display results conditional as long as no error */}
       {operation} {' '}
       {expression} <strong> =
-       {result} </strong> 
+      {result} </strong> 
       {/* give user more specific info about error */}
       {/* {error ? error : ""}  */}
       </div>

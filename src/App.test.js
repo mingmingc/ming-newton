@@ -10,14 +10,6 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-it('displays instructions', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-
-  expect(div.innerHTML).toContain("Calculator for all of your advanced math needs.")
-});
-
-
 it('result div is blank when operation & expression are not defined', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
@@ -33,5 +25,10 @@ it('result div prompts for expression when expression is blank', () => {
   selector.value = 'derive'; //future: list all operators & loop thru & run this test for each
   selector.dispatchEvent(new Event("select"))
   expect(div.querySelector(".results").textContent).toContain("Enter an expression to derive")
+});
+
+it('displays result in array for zeroes', () => {
+  const div = document.createElement('div');
+  
 });
 

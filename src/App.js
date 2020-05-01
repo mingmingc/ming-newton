@@ -3,14 +3,16 @@ import posed from 'react-pose';
 import './../node_modules/@creativebulma/bulma-tooltip/dist/bulma-tooltip.css';
 import './App.css';
 
-// Next steps:
-// Clear this.state.result when new operation is selected
-// User validation & error messages
-    // do not use capital letters
-// Create guide to symbols & formatting
-// Add description for each operation
-// Separate library for fetchResults function ("newton.js" to import later)
-// Work on layout/UI - spacing, describe ops for user, styling, examples
+/*
+Next steps:
+Clear this.state.result when new operation is selected
+User validation & error messages
+    do not use capital letters
+Create guide to symbols & formatting
+Add description for each operation
+Separate library for fetchResults function ("newton.js" to import later)
+Work on layout/UI - spacing, describe ops for user, styling, examples
+*/
 
 const Animated = posed.div({
   hoverable: true,
@@ -45,10 +47,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-    //Separate into another library to import later
-  //Function takes operation + expression (given by user):
-  // 1) URL encode expression
-  // 2) build URL
+  /* Separate into another library to import later
+   Function takes operation + expression (given by user):
+   1) URL encode expression
+   2) build URL
+  */
+ 
   fetchResult() {
     console.log("this.state.operation", this.state.operation)
     console.log("this.state.expression", this.state.expression)

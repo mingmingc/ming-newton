@@ -96,7 +96,7 @@ class App extends Component {
                     <option value="derive">Derive</option>
                     <option value="integrate">Integrate</option>
                     <option value="zeroes">Find 0's</option>
-                    <option value="tangent">Find Tangent</option>
+                    <option value="tangent">Find Tangent Line</option>
                     <option value="area">Area Under Curve</option>
                     <option value="cos">Cosine</option>
                     <option value="sin">Sine</option>
@@ -123,16 +123,14 @@ class App extends Component {
             <div className="results column is-8">
               {operation === "" && expression === "" ? "" : this.resultWithData()}
             </div>
-
-            <div className="column is-4">
+            <div className="column is-4 is">
+              <span> <b>Formatting Guide:</b></span>
               <table className="table is-bordered is-striped is-hoverable">
-                <thead> Examples: <br />
                   <tr> 
                     <th> Operator</th>
                     <th> Expression </th>
                     <th> Result </th>
                   </tr>
-                </thead>
                 <tbody> 
                   <tr> 
                     <td>Simplify</td>
@@ -159,10 +157,56 @@ class App extends Component {
                     <td>x^2+2x</td>
                     <td>[-2, 0]</td>
                   </tr>
+                  <tr> 
+                    <td>Find Tangent Line</td>
+                    <td>2 | x^3 <br />x val | f(x) </td>
+                    <td>[-2, 0]</td>
+                  </tr>
+                  <tr> 
+                    <td>Cosine</td>
+                    <td>pi </td>
+                    <td>-1 </td>
+                  </tr>
+                  <tr> 
+                    <td>Sine</td>
+                    <td>0 </td>
+                    <td>0 </td>
+                  </tr>
+                  <tr> 
+                    <td>Tangent</td>
+                    <td>0 </td>
+                    <td>0 </td>
+                  </tr>
+                  <tr> 
+                    <td>Arccosine <br/>(Inverse Cosine)</td>
+                    <td>-1 </td>
+                    <td>pi </td>
+                  </tr>
+                  <tr> 
+                    <td>Arcsine <br/>(Inverse Sine)</td>
+                    <td>0 </td>
+                    <td>0 </td>
+                  </tr>
+                  <tr> 
+                    <td>Arctangent <br/>(Inverse Tangent)</td>
+                    <td>0 </td>
+                    <td>0 </td>
+                  </tr>
+                  <tr> 
+                    <td>Absolute Value </td>
+                    <td>-1 </td>
+                    <td>1 </td>
+                  </tr>
+                  <tr> 
+                    <td>Logarithm </td>
+                    <td>2 | 8 <br/>base | arg</td>
+                    <td>3 </td>
+                  </tr>
                 </tbody>
               </table>
             </div> 
           </div>
+
         </div>
       </div>
     )

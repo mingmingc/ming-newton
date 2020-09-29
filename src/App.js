@@ -44,7 +44,6 @@ class App extends Component {
     }, () => {
       this.fetchResult();
     });
-    console.log(this.state);
   }
 
   /* Separate into another library to import later
@@ -54,13 +53,11 @@ class App extends Component {
   */
  
   fetchResult() {
-    console.log("this.state.operation", this.state.operation)
-    console.log("this.state.expression", this.state.expression)
     const encodedExpr = encodeURI(this.state.expression.toLowerCase()); //take user input & encode expression into URL format
     const url = `https://newton.now.sh/api/v2/${this.state.operation}/${encodedExpr}`
     fetch(url) 
       .then(res => res.json())    //turn results to JSON obj
-      .then(({ operation, expression, result }) => {     //We use arrow function to unbind 'this', so 'this' refers to the instance of UserInput object as defined above 
+      .then(({ operation, expression, result }) => {     //Use arrow function to unbind 'this', so 'this' refers to the instance of UserInput object as defined above 
         this.setState({
           isLoaded: true,
           result
@@ -69,12 +66,13 @@ class App extends Component {
       .catch((error) => this.setState({ error }))
   }
   render() {
+    // eslint-disable-next-line
     const { operation, expression, result, error } = this.state;
     console.log(error);
     return (
       <div>
-        <div class="container"> 
-          <div class="columns is-paddingless is-marginless"> 
+        <div className="container"> 
+          <div className="columns is-paddingless is-marginless"> 
             <div className="column is-5"> 
               <h1 className="title is-1 is-marginless" id="logo"> Ming Newton </h1>
               <h2 className="title is-3" id="subtitle"> Advanced Math Calculator </h2> 
@@ -83,8 +81,8 @@ class App extends Component {
               <img src=".\logo.png" alt="logo"/>
             </div>
           </div>
-          <div className="columns is-mobile is-marginless is-paddingless">
-            <div className="column is-4" id="operator">
+          <div className="columns is-marginless is-paddingless">
+            <div className="column is-4 is-full-mobile" id="operator">
               {/* Select operator, onChange updates state */}
               <label className="label has-tooltip-left" data-tooltip="Select an operator"> Operator: </label>
               <div className="select"> 
@@ -111,7 +109,7 @@ class App extends Component {
               </div>
             </div>
 
-            <div className="column is-4" id="expression">
+            <div className="column is-4 is-full-mobile" id="expression">
               <label className="label has-tooltip-left" data-tooltip="Refer to chart on right to format your expression"> Expression: </label> 
               {/* Input expression: user types expression, onChange updates state */}
               <input onChange={this.onChange} className="input is-info is-hovered" name="expression" type="text" placeholder="x^2+2x, pi, 0, 1"
@@ -121,98 +119,102 @@ class App extends Component {
 
           <div className="columns is-mobile is-marginless is-paddingless">
             <div className="results column is-8">
-              {operation === "" && expression === "" ? "" : this.resultWithData()}
+              <div className="row" id="showResults"> 
+                {operation === "" && expression === "" ? "" : this.resultWithData()}
+              </div>
+              <div className="row pt-2" id="table"> 
+                <span> <b>Formatting Guide:</b></span>
+                <table className="table is-bordered is-striped is-hoverable">
+                  <thead> 
+                    <tr> 
+                      <th> Operator</th>
+                      <th> Expression </th>
+                      <th> Result </th>
+                    </tr>
+                  </thead>
+                  <tbody> 
+                    <tr> 
+                      <td>Simplify</td>
+                      <td>(x+3)(x+5)</td>
+                      <td>x^2+8x+15</td>
+                    </tr>
+                    <tr> 
+                      <td>Factor</td>
+                      <td>x^2+8x+15</td>
+                      <td>(x+3)(x+5)</td>
+                    </tr>
+                    <tr> 
+                      <td>Derive</td>
+                      <td>x^2</td>
+                      <td>2x</td>
+                    </tr>
+                    <tr> 
+                      <td>Integrate</td>
+                      <td>x^2</td>
+                      <td>1/3 x^3</td>
+                    </tr>
+                    <tr> 
+                      <td>Find 0's</td>
+                      <td>x^2+2x</td>
+                      <td>[-2, 0]</td>
+                    </tr>
+                    <tr> 
+                      <td>Find Tangent Line</td>
+                      <td>2 | x^3 <br />x val | f(x) </td>
+                      <td>[-2, 0]</td>
+                    </tr>
+                    <tr> 
+                      <td>Cosine</td>
+                      <td>pi </td>
+                      <td>-1 </td>
+                    </tr>
+                    <tr> 
+                      <td>Sine</td>
+                      <td>0 </td>
+                      <td>0 </td>
+                    </tr>
+                    <tr> 
+                      <td>Tangent</td>
+                      <td>0 </td>
+                      <td>0 </td>
+                    </tr>
+                    <tr> 
+                      <td>Arccosine <br/>(Inverse Cosine)</td>
+                      <td>-1 </td>
+                      <td>pi </td>
+                    </tr>
+                    <tr> 
+                      <td>Arcsine <br/>(Inverse Sine)</td>
+                      <td>0 </td>
+                      <td>0 </td>
+                    </tr>
+                    <tr> 
+                      <td>Arctangent <br/>(Inverse Tangent)</td>
+                      <td>0 </td>
+                      <td>0 </td>
+                    </tr>
+                    <tr> 
+                      <td>Absolute Value </td>
+                      <td>-1 </td>
+                      <td>1 </td>
+                    </tr>
+                    <tr> 
+                      <td>Logarithm </td>
+                      <td>2 | 8 <br/>base | arg</td>
+                      <td>3 </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div className="column is-4 is">
-              <span> <b>Formatting Guide:</b></span>
-              <table className="table is-bordered is-striped is-hoverable">
-                  <tr> 
-                    <th> Operator</th>
-                    <th> Expression </th>
-                    <th> Result </th>
-                  </tr>
-                <tbody> 
-                  <tr> 
-                    <td>Simplify</td>
-                    <td>(x+3)(x+5)</td>
-                    <td>x^2+8x+15</td>
-                  </tr>
-                  <tr> 
-                    <td>Factor</td>
-                    <td>x^2+8x+15</td>
-                    <td>(x+3)(x+5)</td>
-                  </tr>
-                  <tr> 
-                    <td>Derive</td>
-                    <td>x^2</td>
-                    <td>2x</td>
-                  </tr>
-                  <tr> 
-                    <td>Integrate</td>
-                    <td>x^2</td>
-                    <td>1/3 x^3</td>
-                  </tr>
-                  <tr> 
-                    <td>Find 0's</td>
-                    <td>x^2+2x</td>
-                    <td>[-2, 0]</td>
-                  </tr>
-                  <tr> 
-                    <td>Find Tangent Line</td>
-                    <td>2 | x^3 <br />x val | f(x) </td>
-                    <td>[-2, 0]</td>
-                  </tr>
-                  <tr> 
-                    <td>Cosine</td>
-                    <td>pi </td>
-                    <td>-1 </td>
-                  </tr>
-                  <tr> 
-                    <td>Sine</td>
-                    <td>0 </td>
-                    <td>0 </td>
-                  </tr>
-                  <tr> 
-                    <td>Tangent</td>
-                    <td>0 </td>
-                    <td>0 </td>
-                  </tr>
-                  <tr> 
-                    <td>Arccosine <br/>(Inverse Cosine)</td>
-                    <td>-1 </td>
-                    <td>pi </td>
-                  </tr>
-                  <tr> 
-                    <td>Arcsine <br/>(Inverse Sine)</td>
-                    <td>0 </td>
-                    <td>0 </td>
-                  </tr>
-                  <tr> 
-                    <td>Arctangent <br/>(Inverse Tangent)</td>
-                    <td>0 </td>
-                    <td>0 </td>
-                  </tr>
-                  <tr> 
-                    <td>Absolute Value </td>
-                    <td>-1 </td>
-                    <td>1 </td>
-                  </tr>
-                  <tr> 
-                    <td>Logarithm </td>
-                    <td>2 | 8 <br/>base | arg</td>
-                    <td>3 </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> 
           </div>
-
         </div>
       </div>
     )
   }
 
   resultWithData(){
+    // eslint-disable-next-line
     const { operation, expression, result, error } = this.state
     return(
       operation !== "" && expression === "" ? "Enter an expression to evaluate" : 

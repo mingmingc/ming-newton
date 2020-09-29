@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#table {
+  font-size: 16px;
+  padding-top: 16px;
+}
+

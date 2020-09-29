@@ -57,7 +57,7 @@ class App extends Component {
     console.log("this.state.operation", this.state.operation)
     console.log("this.state.expression", this.state.expression)
     const encodedExpr = encodeURI(this.state.expression.toLowerCase()); //take user input & encode expression into URL format
-    const url = `https://newton.now.sh/${this.state.operation}/${encodedExpr}`
+    const url = `https://newton.now.sh/api/v2/${this.state.operation}/${encodedExpr}`
     fetch(url) 
       .then(res => res.json())    //turn results to JSON obj
       .then(({ operation, expression, result }) => {     //We use arrow function to unbind 'this', so 'this' refers to the instance of UserInput object as defined above 

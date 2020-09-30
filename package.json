@@ -6,10 +6,10 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "path": "^0.12.7",
-    "react": "^16.8.6",
+    "react": "^16.13.1",
     "react-bulma-components": "^2.3.0",
-    "react-dom": "^16.8.6",
-    "react-pose": "^4.0.8",
+    "react-dom": "^16.13.1",
+    "react-pose": "^4.0.10",
     "react-scripts": "^2.1.8"
   },
   "scripts": {
@@ -34,6 +34,6 @@
     ]
   },
   "devDependencies": {
-    "@creativebulma/bulma-tooltip": "^1.0.2"
+    "@creativebulma/bulma-tooltip": "^1.2.0"
   }
 }

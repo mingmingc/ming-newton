@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import posed from 'react-pose';
-import './../node_modules/@creativebulma/bulma-tooltip/dist/bulma-tooltip.css';
 import './App.css';
 
 /*

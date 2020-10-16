@@ -86,7 +86,7 @@ class App extends Component {
               <label className="label has-tooltip-left" data-tooltip="Select an operator"> Operator: </label>
               <div className="select"> 
                 <Animated>
-                  <select onChange={this.onChange} className="is-focused is-large" name="operation">
+                  <select onChange={this.onChange} className="is-focused is-large" name="operation" aria-label="Operation Dropdown Menu">
                     <option>Choose operator</option>
                     <option value="simplify">Simplify</option>
                     <option value="factor">Factor</option>
@@ -109,9 +109,9 @@ class App extends Component {
             </div>
 
             <div className="column is-4 is-full-mobile" id="expression">
-              <label className="label has-tooltip-left" data-tooltip="Refer to chart on right to format your expression"> Expression: </label> 
+              <label className="label"> Expression: </label> 
               {/* Input expression: user types expression, onChange updates state */}
-              <input onChange={this.onChange} className="input is-info is-hovered" name="expression" type="text" placeholder="x^2+2x, pi, 0, 1"
+              <input onChange={this.onChange} className="input is-info is-hovered" name="expression" type="text" placeholder="x^2+2x, pi, 0, 1" type="search" placeholder="Search" aria-label="Expression Form"
               />
             </div>
           </div>
